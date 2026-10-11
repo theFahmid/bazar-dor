@@ -1,5 +1,5 @@
 import { Category, Product } from "@/app/types";
-import ProductCard from "@/components/home/productCard";
+import CategoryProductsView from "@/components/home/categoryProductsView";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
@@ -42,18 +42,7 @@ async function CategoryDetail({ params }: Props) {
               </p>
             </div>
           </div>
-          <div className="flex items-center justify-between">
-            <p>
-              {products.length.toLocaleString("bn-bd")}টি পণ্যের আজকের দাম ও
-              পরিবর্তন
-            </p>
-            <div></div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {products.map((product: Product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          <CategoryProductsView products={products} />
         </div>
   );
 }
