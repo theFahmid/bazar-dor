@@ -5,6 +5,7 @@ import { Category, Product } from "@/app/types";
 import Marquee from "react-fast-marquee";
 import { unitExpression } from "@/utils/unit";
 import CategoryNavLinks from "./categoryNavLinks";
+import AuthButtons from "./authButtons";
 
 function PrimaryNav() {
   return (
@@ -22,14 +23,9 @@ function PrimaryNav() {
           </div>
         </div>
       </Link>
-      <div>
-        <Link href="/signin">
-          <button className="btn btn-ghost">সাইন ইন</button>
-        </Link>
-        <Link href="/signup">
-          <button className="btn btn-primary">সাইন আপ</button>
-        </Link>
-      </div>
+      <Suspense fallback={<div className="skeleton h-10 w-24" />}>
+        <AuthButtons />
+      </Suspense>
     </div>
   );
 }
