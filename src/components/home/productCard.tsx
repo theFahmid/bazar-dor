@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
-    <Link href={`products/${product.slug}`}>
+    <Link href={`product/${product.slug}`}>
       <div className="p-4 border-slate-300 border rounded-xl hover:border-green-500 hover:cursor-pointer flex flex-col gap-4">
         <div className="flex items-center gap-4">
           <div className="p-2 text-xl rounded-xl bg-slate-100">

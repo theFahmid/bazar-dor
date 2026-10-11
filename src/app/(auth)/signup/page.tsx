@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
+import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
+import SocialButtons from "../socialButtons";
 
 export default function Signup() {
   const router = useRouter();
@@ -25,9 +27,11 @@ export default function Signup() {
     setLoading(false);
     if (error) {
       setError(error.message ?? "Failed to create account");
+      toast.error(error.message ?? "Failed to create account");
       return;
     }
-    router.push("/");
+    toast.success("Account created! Please sign in");
+    router.push("/signin");
   }
 
   return (
@@ -81,6 +85,7 @@ export default function Signup() {
       >
         {loading ? "Creating account..." : "Create an Account"}
       </button>
+      <SocialButtons />
       <p className="text-sm mt-2">
         Already have an account?{" "}
         <Link href="/signin" className="link">

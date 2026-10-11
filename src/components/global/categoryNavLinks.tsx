@@ -12,7 +12,7 @@ export default function CategoryNavLinks({
   const pathname = usePathname();
 
   return (
-    <div className="flex gap-2 items-center overflow-x-auto shadow pb-2">
+    <div className="flex gap-2 items-center overflow-x-auto shadow pb-2 bg-white" >
       {categories.map((category) => {
         const href = `/category/${category.slug}`;
         const isActive = pathname === href;

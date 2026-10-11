@@ -1,5 +1,6 @@
 import { Category, Product } from "@/app/types";
 import CategoryProductsView from "@/components/home/categoryProductsView";
+import ProductGridSkeleton from "@/components/home/productGridSkeleton";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
@@ -48,7 +49,14 @@ async function CategoryDetail({ params }: Props) {
 }
 export default function CategoryPage({ params }: Props) {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense
+      fallback={
+        <div className="space-y-4">
+          <div className="skeleton h-24 rounded-xl" />
+          <ProductGridSkeleton />
+        </div>
+      }
+    >
       <CategoryDetail params={params} />
     </Suspense>
   );

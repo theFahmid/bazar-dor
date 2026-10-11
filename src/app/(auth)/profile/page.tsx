@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { FormEvent, useState } from "react";
+import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
 export default function Profile() {
@@ -37,10 +38,12 @@ export default function Profile() {
     setSaving(false);
     if (error) {
       setError(error.message ?? "Failed to update profile");
+      toast.error(error.message ?? "Failed to update profile");
       return;
     }
     await refetch();
     setSuccess("Profile updated");
+    toast.success("Profile updated");
   }
 
   return (

@@ -47,7 +47,7 @@ MONGODB_URL=your-mongodb-connection-string
 | --- | --- |
 | `/` | Public — hero, risers, fallers, all products |
 | `/category/{slug}` | Public — category products + sort |
-| `/products/{slug}` | Login required — product detail + market prices |
+| `/product/{slug}` | Login required — product detail + market prices |
 | `/signin`, `/signup` | Public — auth forms |
 | `/profile` | Login required — view & update name |
 | Unknown routes / invalid slugs | Friendly 404 page |

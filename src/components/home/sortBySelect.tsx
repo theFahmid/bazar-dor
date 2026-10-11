@@ -9,7 +9,7 @@ export default function SortBySelect({
 }) {
   return (
     <fieldset className="fieldset">
-      <legend className="fieldset-legend">Sort by</legend>
+      <legend className="fieldset-legend">সাজান</legend>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value as SortKey)}

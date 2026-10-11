@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Baloo_Da_2, Inter } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import Navbar from "@/components/global/navbar";
 import Footer from "@/components/global/footer";
@@ -28,7 +29,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme="light"
     >
       <body className="wrapper">
-        <header className="sticky top-0 left-0 right-0 bg-white shadow">
+        <Toaster position="top-center" />
+        <header className="sticky top-0 left-0 right-0 bg-white shadow z-10">
           <Navbar />
         </header>
         <main className="min-h-full my-4">{children}</main>

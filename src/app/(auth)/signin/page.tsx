@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
+import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
+import SocialButtons from "../socialButtons";
 
 export default function Signin() {
   const router = useRouter();
@@ -23,8 +25,10 @@ export default function Signin() {
     setLoading(false);
     if (error) {
       setError(error.message ?? "Failed to sign in");
+      toast.error(error.message ?? "Failed to sign in");
       return;
     }
+    toast.success("Signed in successfully");
     router.push("/");
   }
 
@@ -34,6 +38,7 @@ export default function Signin() {
       className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4"
     >
       <legend className="fieldset-legend">Login</legend>
+
       <label className="label" htmlFor="email">
         Email
       </label>
@@ -46,6 +51,7 @@ export default function Signin() {
         onChange={(e) => setEmail(e.target.value)}
         required
       />
+
       <label className="label" htmlFor="password">
         Password
       </label>
@@ -66,6 +72,7 @@ export default function Signin() {
       >
         {loading ? "Signing in..." : "Login"}
       </button>
+      <SocialButtons />
       <p className="text-sm mt-2">
         No account yet?{" "}
         <Link href="/signup" className="link">

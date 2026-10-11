@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 
 export default function AuthButtons() {
@@ -33,7 +34,13 @@ export default function AuthButtons() {
 
   async function handleLogout() {
     setLoggingOut(true);
-    await authClient.signOut();
+    const { error } = await authClient.signOut();
+    setLoggingOut(false);
+    if (error) {
+      toast.error("Failed to log out");
+      return;
+    }
+    toast.success("Logged out successfully");
     router.push("/");
     router.refresh();
   }

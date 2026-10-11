@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { Product } from "./types";
 import ProductCard from "@/components/home/productCard";
 import AllProductsView from "@/components/home/allProductsView";
+import ProductGridSkeleton from "@/components/home/productGridSkeleton";
 
 function Hero() {
   return (
@@ -97,9 +98,15 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <PriceIncreased />
-      <PriceDecreased />
-      <AllProducts />
+      <Suspense fallback={<ProductGridSkeleton />}>
+        <PriceIncreased />
+      </Suspense>
+      <Suspense fallback={<ProductGridSkeleton />}>
+        <PriceDecreased />
+      </Suspense>
+      <Suspense fallback={<ProductGridSkeleton count={12} />}>
+        <AllProducts />
+      </Suspense>
     </>
   );
 }

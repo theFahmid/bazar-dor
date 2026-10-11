@@ -32,7 +32,14 @@ async function ProductDetail({ params }: Props) {
 
 export default function ProductPage({ params }: Props) {
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense
+      fallback={
+        <div className="space-y-4">
+          <div className="skeleton h-44 rounded-2xl" />
+          <div className="skeleton h-96 rounded-2xl" />
+        </div>
+      }
+    >
       <ProductGate>
         <ProductDetail params={params} />
       </ProductGate>
