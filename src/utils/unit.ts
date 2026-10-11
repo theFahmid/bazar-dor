@@ -1,7 +1,7 @@
 export function unitExpression(unit: string) {
-  if (unit === "kg") return "প্রতি কেজি";
-  else if (unit === "litre") return "প্রতি লিটার";
-  else if (unit === "dozen") return "প্রতি ডজন";
-  else if (unit === "piece") return "প্রতি পিস";
+  if (unit === "kg") return "কেজি";
+  else if (unit === "litre") return "লিটার";
+  else if (unit === "dozen") return "ডজন";
+  else if (unit === "piece") return "পিস";
   else return unit;
 }

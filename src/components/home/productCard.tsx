@@ -13,7 +13,7 @@ export default function ProductCard({ product }: { product: Product }) {
           <div className="flex flex-col">
             <h4 className="font-bold text-md">{product.nameBn}</h4>
             <p className="text-gray-500 text-sm">
-              {unitExpression(product.unit)}
+              প্রতি {unitExpression(product.unit)}
             </p>
           </div>
         </div>
@@ -28,11 +28,13 @@ export default function ProductCard({ product }: { product: Product }) {
             </p>
           </div>
           <div
-            className={`badge badge-soft text-sm font-bold ${product.change.dir === "up" ? "badge-error" : "badge-success"}`}
+            className={`badge badge-soft text-sm font-bold ${product.change.dir === "up" ? "badge-error" : product.change.dir === "down" ? "badge-success" : "badge-neutral"}`}
           >
             {product.change.dir === "up"
               ? `▲ ${product.change.pct.toLocaleString("bn-bd")}%`
-              : `▼ ${product.change.pct.toLocaleString("bn-bd").slice(1)}%`}
+              : product.change.dir === "down"
+                ? `▼ ${product.change.pct.toLocaleString("bn-bd").slice(1)}%`
+                : `— ${product.change.pct.toLocaleString("bn-bd")}%`}
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Baloo_Da_2, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/global/navbar";
+import Footer from "@/components/global/footer";
 
 const banglaFont = Baloo_Da_2({
   variable: "--font-bangla-sans",
@@ -15,7 +16,8 @@ const englishFont = Inter({
 
 export const metadata: Metadata = {
   title: "BazarDor",
-  description: "A modern, responsive daily market price tracker for essential commodities in Bangladesh",
+  description:
+    "A modern, responsive daily market price tracker for essential commodities in Bangladesh",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -25,17 +27,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${banglaFont.variable} ${englishFont.variable} h-full antialiased`}
       data-theme="light"
     >
-      <body className="min-h-full wrapper">
+      <body className="wrapper">
         <header className="sticky top-0 left-0 right-0 bg-white shadow">
-          <Navbar/>
+          <Navbar />
         </header>
-        <main>
-          {children}
-        </main>
+        <main className="min-h-full my-4">{children}</main>
         <footer>
-
+          <Footer />
         </footer>
-        </body>
+      </body>
     </html>
   );
 }
