@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Category, Product } from "@/app/types";
 import Marquee from "react-fast-marquee";
 import { unitExpression } from "@/utils/unit";
+import CategoryNavLinks from "./categoryNavLinks";
 
 function PrimaryNav() {
   return (
@@ -37,21 +38,12 @@ async function CategoryNav() {
   "use cache";
 
   const res = await fetch(`${process.env.MAIN_API_URL}/categories`);
-  const data = await res.json();
+  const data = (await res.json()) as Category[];
 
   return (
-    <div className="flex gap-2 items-center overflow-x-auto shadow pb-2">
-      {data.map((category: Category) => (
-        <Link href={`/category/${category.slug}`} key={category.id}>
-          <button
-            className={`btn ${!category.slug ? `btn-ghost` : `btn-info`} flex gap-2 px-2 py-0 text-nowrap`}
-          >
-            <div>{category.icon}</div>
-            <div>{category.nameBn}</div>
-          </button>
-        </Link>
-      ))}
-    </div>
+    <Suspense fallback={<div className="flex gap-2 pb-2" />}>
+      <CategoryNavLinks categories={data} />
+    </Suspense>
   );
 }
 
@@ -64,7 +56,7 @@ async function MarqueeText() {
   return (
     <Marquee pauseOnHover={true}>
       {data.map((item) => (
-        <p className="px-4">
+        <p className="px-4" key={item.id}>
           {item.image} <span className="font-medium">{item.nameBn}</span>{" "}
           {item.today.toLocaleString("bn-bd")}টাকা/
           {unitExpression(item.unit)}
