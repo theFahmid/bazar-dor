@@ -26,7 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme="light"
     >
       <body className="min-h-full wrapper">
-        <header className="sticky top-0 left-0 right-0">
+        <header className="sticky top-0 left-0 right-0 bg-white shadow">
           <Navbar/>
         </header>
         <main>
